@@ -1,3 +1,7 @@
-import menu from './menu'
+// import menu from './menu'
+import Sketch from './app'
 
-menu()
+new Sketch({
+  domElement: document.querySelector('#container'),
+})
+// menu()

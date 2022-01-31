@@ -1,11 +1,11 @@
 {
-  "title": "Eleventy-Parcel",
-  "url": "https://eleventy-parcel.netlify.app/",
-  "description": "A basic Eleventy (11ty) starter project with Parcel JS",
+  "title": "Photography Template",
+  "url": "https://photography-template.netlify.app/",
+  "description": "A basic Eleventy (11ty) starter project for an image focused site with Parcel JS",
   "author": {
-    "name": "Michelle Barker",
-    "email": "contact@michellebarker.co.uk"
+    "name": "Jake Riordan",
+    "email": "contact@jakeriordan.dev"
   },
   "img": "og-image.jpg",
-  "githubUrl": "https://github.com/mbarker84/eleventy-parcel"
+  "githubUrl": "https://github.com/hazetheai/photography-template"
 }

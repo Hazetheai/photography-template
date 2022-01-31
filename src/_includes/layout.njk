@@ -1,23 +1,34 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en" {% if section %} data-current="{{ section }}"{% endif %}>
   {% include "./partials/siteHead.njk" %}
 
-  <body>
-    <div class="hidden">
+  <body >
+    {# <div class="hidden">
       {% include './partials/sprite.svg' %}
+    </div> #}
+    <div data-barba="wrapper">
+      <div data-barba="container"  {% if barbaNamespace %} data-barba-namespace="{{ barbaNamespace }}" {% endif %} >
+
+        {% if page.url == '/' %}
+          {% set showHomeLink = false %}
+        {% else %}
+          {% set showHomeLink = true %}
+        {% endif %}
+
+        {% include "./partials/header.njk" %}
+        {% if section != 'gallery-item' %}
+          <div class="padding-y-xl"></div>
+        {% endif %}
+        {% block content %}{% endblock %}
+
+        {% include "./partials/footer.njk" %}
+
+      </div>
     </div>
+    <!-- end barba -->
+    <div class="curtain"></div>
+    <div id="container"></div>
 
-    {% if page.url == '/' %}
-      {% set showHomeLink = false %}
-    {% else %}
-      {% set showHomeLink = true %}
-    {% endif %}
-
-    {% include "./partials/header.njk" %}
-
-    {% block content %}{% endblock %}
-
-    {% include "./partials/footer.njk" %}
     <!--JS-->
     {% if version.js | length == 0 %}
       {% set JsVersion = '' %}
@@ -25,5 +36,7 @@
       {% set JsVersion = version.js %}
     {% endif %}
     <script type="module" src="/index{{ JsVersion }}.js"></script>
+    <script  src="/js/scripts/scripts.min.js"></script>
+
   </body>
 </html>

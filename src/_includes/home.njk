@@ -1,26 +1,54 @@
+---
+section: gallery-index
+barbaNamespace: home
+
+---
+
 {% extends "./layout.njk" %}
 
 {% block content %}
-  <div class="c-hero">
+  <h1>{{ title }}</h1>
+
+  <main class="b-outside page-content" >
     <div class="container">
-      <h1 class="c-hero__heading">{{ pageTitle }}</h1>
-      <div class="c-hero__desc">
-        <p>{{ metadata.description }}</p>
-        <div class="c-hero__link-wrapper">
-          <a class="c-hero__link c-hero__link--about" href="/about">About this project</a>
-        </div>
-        <div class="c-hero__link-wrapper">
-          <a class="c-hero__link c-hero__link--github" href="{{ metadata.githubUrl }}">
-            Fork this on Github
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30">
-              <use href="#github"/>
-            </svg>
-          </a>
+      <div asscroll-container >
+        <div class="scroll-wrap">
+          <!-- BEGIN content -->
+          <div class="content">
+            {# {{ layoutContent | safe }} #}
+
+            <!-- BEGIN item -->
+            <a href="/gallery/this-is-the-first-gallery" class="item">
+              <img src="/texture.jpg" class="js-image" alt=""/>
+              <h2>Some title</h2>
+              <p>And some very interesting description.</p>
+            </a>
+            <!-- END item -->
+            <!-- BEGIN item -->
+            <a href="/gallery/this-is-the-second-gallery" class="item">
+              <img src="/texture.jpg" class="js-image" alt=""/>
+              <h2>Some title</h2>
+              <p>And some very interesting description.</p>
+            </a>
+            <!-- END item -->
+            <!-- BEGIN item -->
+            <a href="/gallery/this-is-the-third-gallery" class="item">
+              <img src="/texture.jpg" class="js-image" alt=""/>
+              <h2>Some title</h2>
+              <p>And some very interesting description.</p>
+            </a>
+            <!-- END item -->
+            <!-- BEGIN item -->
+            <a href="/gallery/this-is-the-fourth-gallery" class="item">
+              <img src="/texture.jpg" class="js-image" alt=""/>
+              <h2>Some title</h2>
+              <p>And some very interesting description.</p>
+            </a>
+            <!-- END item -->
+          </div>
+          <!-- END content -->
         </div>
       </div>
     </div>
-  </div>
-
-  {{ content | safe }}
-
+  </main>
 {% endblock %}

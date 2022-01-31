@@ -34,24 +34,31 @@ readCssFile()
       .then(() => {
         const versionObject = {
           css: hashCss,
-          js: hashJs
+          js: hashJs,
         }
 
-        writeFile('src/_data/version.json', JSON.stringify(versionObject), (err) => {
-          if (err) throw err
-          console.log('The file has been saved!')
-        })
+        writeFile(
+          'src/_data/version.json',
+          JSON.stringify(versionObject),
+          (err) => {
+            if (err) throw err
+            console.log('The file has been saved!')
+          }
+        )
       })
       .then(() => {
-        fs.rename('dist/styles.css', `dist/styles${hashCss}.css`, function(err) {
-          if ( err ) return console.log('ERROR: ' + err)
-          console.log(`dist/styles.css > dist/styles${hashCss}.css`)
-        })
+        fs.rename(
+          'dist/styles.css',
+          `dist/styles${hashCss}.css`,
+          function (err) {
+            if (err) return console.log('ERROR: ' + err)
+            console.log(`dist/styles.css > dist/styles${hashCss}.css`)
+          }
+        )
 
-        fs.rename('dist/index.js', `dist/index${hashJs}.js`, function(err) {
-          if ( err ) return console.log('ERROR: ' + err)
+        fs.rename('dist/index.js', `dist/index${hashJs}.js`, function (err) {
+          if (err) return console.log('ERROR: ' + err)
           console.log(`dist/index.js > dist/index${hashJs}.js`)
         })
       })
   })
-

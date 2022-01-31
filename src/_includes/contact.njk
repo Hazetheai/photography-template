@@ -1,0 +1,15 @@
+---
+section: contact
+barbaNamespace: default
+---
+
+{% extends "./layout.njk" %}
+
+{% block content %}
+  <main class="page-content">
+    <div class="container o-richtext">
+      <h1>{{ pageTitle }}</h1>
+      {% include "./partials/contact-form.njk" %}
+    </div>
+  </main>
+{% endblock %}

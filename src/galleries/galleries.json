@@ -1,0 +1,5 @@
+{
+  "layout": "gallery.njk",
+  "permalink": "gallery/{{ pageTitle | slug }}/index.html",
+  "tags": "gallery"
+}

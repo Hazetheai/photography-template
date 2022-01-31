@@ -1,4 +1,6 @@
 ---
 layout: home.njk
-pageTitle: "Eleventy-Parcel"
+pageTitle: 'Photography'
 ---
+
+Welcome - The content goes here
