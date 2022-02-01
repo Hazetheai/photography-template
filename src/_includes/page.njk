@@ -6,7 +6,7 @@ barbaNamespace: default
 {% extends "./layout.njk" %}
 
 {% block content %}
-  <main class="page-content">
+  <main class="page-content" asscrollRAF-container>
     <div class="container o-richtext">
       <h1>{{ pageTitle }}</h1>
       {{ content | safe }}

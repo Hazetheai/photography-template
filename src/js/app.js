@@ -49,6 +49,7 @@ export default class Sketch {
     this.geometry;
     this.material;
     this.asscroll;
+    this.asscrollRAF;
     this.images;
     this.imageStore;
     this.materials;
@@ -68,20 +69,151 @@ export default class Sketch {
     this.render();
   }
 
+  setupSettings() {
+    this.settings = {
+      progress: 0,
+    };
+
+    this.gui = new dat.GUI();
+
+    this.gui.add(this.settings, 'progress', 0, 1, 0.001);
+  }
+
+  init() {
+    this.camera = new PerspectiveCamera(30, this.width / this.height, 10, 1000);
+
+    fixDimensions({ height: this.height, distance: 600, camera: this.camera });
+
+    this.scene = new Scene();
+
+    this.renderer = new WebGLRenderer({ antialias: true, alpha: true });
+    this.renderer.setSize(this.width, this.height);
+    this.renderer.setPixelRatio(window.devicePixelRatio);
+    this.container.appendChild(this.renderer.domElement);
+
+    // this.controls = new OrbitControls(this.camera, this.renderer.domElement)
+
+    if (this.isGalleryIndex && this.asscroll === undefined) {
+      this.asscroll = new ASScroll({
+        containerElement: document.querySelector('[asscroll-container]'),
+        disableRaf: true,
+      });
+
+      this.asscroll.enable({
+        horizontalScroll: this.isGalleryIndex,
+      });
+    }
+
+    this.materials = [];
+    console.log('this.asscroll', this.asscroll);
+    console.log('init', this);
+  }
+
   barba() {
     let that = this;
+    const log = true;
     barba.init({
       transitions: [
+        // name: 'default-to-default',
         {
-          name: 'default-transition',
+          name: 'default-to-default',
           from: {
-            namespace: ['default', 'home', 'inside'],
+            namespace: 'default',
           },
           to: {
-            namespace: ['default'],
+            namespace: 'default',
           },
           leave(data) {
-            console.log('data', data);
+            that.asscroll.disable();
+            log && console.log('default-to-default-leave', data);
+            return gsap
+              .timeline()
+              .to('.curtain', { duration: 0.3, y: 0 })
+              .to(data.current.container, {
+                opacity: 0,
+              });
+          },
+          enter(data) {
+            log && console.log('default-to-default-enter', data);
+            that.asscroll = new ASScroll({
+              disableRaf: true,
+              containerElement: data.next.container.querySelector(
+                '[asscroll-container]'
+              ),
+            });
+
+            that.asscroll.enable({
+              newScrollElements:
+                data.next.container.querySelector('.scroll-wrap'),
+            });
+
+            return gsap.timeline().to('.curtain', {
+              duration: 0.3,
+              y: '100%',
+            });
+          },
+        },
+        // name: 'default-to-home',
+        {
+          name: 'default-to-home',
+          from: {
+            namespace: 'default',
+          },
+          to: {
+            namespace: 'home',
+          },
+          leave(data) {
+            log && console.log('default-to-home-leave', data);
+            that.asscroll.disable();
+            return gsap
+              .timeline()
+              .to('.curtain', { duration: 0.3, y: 0 })
+              .to(data.current.container, { opacity: 0 });
+          },
+          enter(data) {
+            log && console.log('default-to-home-enter', data);
+            that.asscroll = new ASScroll({
+              disableRaf: true,
+              containerElement: data.next.container.querySelector(
+                '[asscroll-container]'
+              ),
+            });
+            that.asscroll.enable({
+              horizontalScroll: true,
+              newScrollElements:
+                data.next.container.querySelector('.scroll-wrap'),
+            });
+
+            // cleaning old arrays
+            that.imageStore.forEach((m) => {
+              that.scene.remove(m.mesh);
+            });
+            that.imageStore = [];
+            that.materials = [];
+            // Re-init Scene
+            that.addObjects();
+            that.resize();
+            that.addClickEvents();
+            that.container.style.visibility = 'visible';
+            that.animationRunning = true;
+            return gsap
+              .timeline()
+              .to('.curtain', { duration: 0.3, y: '-100%' })
+              .from(data.next.container, {
+                opacity: 0,
+              });
+          },
+        },
+        // name: 'home-to-default',
+        {
+          name: 'home-to-default',
+          from: {
+            namespace: 'home',
+          },
+          to: { namespace: 'default' },
+          leave(data) {
+            log && console.log('home-to-default-leave', data);
+            that.asscroll.disable();
             return gsap
               .timeline()
               .to('.curtain', { duration: 0.3, y: 0 })
@@ -94,37 +226,50 @@ export default class Sketch {
               });
           },
           enter(data) {
-            that.asscroll.disable();
-            return gsap.timeline().to('.curtain', {
-              duration: 0.3,
-              y: '100%',
+            log && console.log('home-to-default-enter', data);
+            that.asscroll = new ASScroll({
+              disableRaf: true,
+              containerElement: data.next.container.querySelector(
+                '[asscroll-container]'
+              ),
             });
-            // .to(data.current.container, { opacity: 0 });
-          },
-        },
-        {
-          name: 'from-home-transition',
-          from: {
-            namespace: ['home', 'default'],
-          },
-          leave(data) {
-            that.asscroll.disable();
-            return gsap.timeline().to(data.current.container, { opacity: 0 });
-          },
-          enter(data) {
-            // if (!!data.next.container.querySelector('[asscroll-container]')) {
-            // that.asscroll = new ASScroll({
-            //   disableRaf: true,
-            //   containerElement: data.next.container.querySelector(
-            //     '[asscroll-container]'
-            //   ),
-            // })
 
             that.asscroll.enable({
               newScrollElements:
                 data.next.container.querySelector('.scroll-wrap'),
             });
-            // }
+
+            return gsap.timeline().to('.curtain', {
+              duration: 0.3,
+              y: '100%',
+            });
+          },
+        },
+        // name: 'home-to-inside',
+        {
+          name: 'home-to-inside',
+          from: {
+            namespace: 'home',
+          },
+          to: { namespace: 'inside' },
+          leave(data) {
+            log && console.log('home-to-inside-leave', data);
+            that.asscroll.disable();
+            return gsap.timeline().to(data.current.container, { opacity: 0 });
+          },
+          enter(data) {
+            log && console.log('home-to-inside-enter', data);
+            that.asscroll = new ASScroll({
+              disableRaf: true,
+              containerElement: data.next.container.querySelector(
+                '[asscroll-container]'
+              ),
+            });
+
+            that.asscroll.enable({
+              newScrollElements:
+                data.next.container.querySelector('.scroll-wrap'),
+            });
             return gsap.timeline().from(data.current.container, {
               opacity: 0,
               onComplete: () => {
@@ -134,12 +279,17 @@ export default class Sketch {
             });
           },
         },
+        // name: 'inside-to-home',
         {
-          name: 'from-inside-transition',
+          name: 'inside-to-home',
           from: {
-            namespace: ['inside', 'default'],
+            namespace: 'inside',
+          },
+          to: {
+            namespace: 'home',
           },
           leave(data) {
+            log && console.log('inside-to-home-leave', data);
             that.asscroll.disable();
             return gsap
               .timeline()
@@ -147,6 +297,7 @@ export default class Sketch {
               .to(data.current.container, { opacity: 0 });
           },
           enter(data) {
+            log && console.log('inside-to-home-enter', data);
             that.asscroll = new ASScroll({
               disableRaf: true,
               containerElement: data.next.container.querySelector(
@@ -178,48 +329,55 @@ export default class Sketch {
               });
           },
         },
+        // name: 'inside-to-default',
+        {
+          name: 'inside-to-default',
+          from: {
+            namespace: 'inside',
+          },
+          to: {
+            namespace: 'default',
+          },
+          leave(data) {
+            log && console.log('inside-to-default-leave', data);
+            that.asscroll.disable();
+            return gsap
+              .timeline()
+              .to('.curtain', { duration: 0.3, y: 0 })
+              .to(data.current.container, { opacity: 0 });
+          },
+          enter(data) {
+            log && console.log('inside-to-default-enter', data);
+            if (!that.asscrollRAF) {
+              that.asscrollRAF = new ASScroll({
+                containerElement: document.querySelector(
+                  '[asscrollRAF-container]'
+                ),
+              });
+            }
+            that.asscrollRAF.enable({
+              newScrollElements:
+                data.next.container.querySelector('.scroll-wrap'),
+            });
+            // cleaning old arrays
+            that.imageStore.forEach((m) => {
+              that.scene.remove(m.mesh);
+            });
+            that.imageStore = [];
+            that.materials = [];
+            // Disable THREE
+            that.container.style.visibility = 'hidden';
+            that.animationRunning = false;
+            return gsap
+              .timeline()
+              .to('.curtain', { duration: 0.3, y: '-100%' })
+              .from(data.next.container, {
+                opacity: 0,
+              });
+          },
+        },
       ],
     });
-  }
-
-  setupSettings() {
-    this.settings = {
-      progress: 0,
-    };
-
-    this.gui = new dat.GUI();
-
-    this.gui.add(this.settings, 'progress', 0, 1, 0.001);
-  }
-
-  init() {
-    console.log(`init`);
-    this.camera = new PerspectiveCamera(30, this.width / this.height, 10, 1000);
-
-    fixDimensions({ height: this.height, distance: 600, camera: this.camera });
-
-    this.scene = new Scene();
-
-    this.renderer = new WebGLRenderer({ antialias: true, alpha: true });
-    this.renderer.setSize(this.width, this.height);
-    this.renderer.setPixelRatio(window.devicePixelRatio);
-    this.container.appendChild(this.renderer.domElement);
-
-    // this.controls = new OrbitControls(this.camera, this.renderer.domElement)
-
-    if (this.isGalleryIndex && this.asscroll === undefined) {
-      this.asscroll = new ASScroll({
-        containerElement: document.querySelector('[asscroll-container]'),
-        disableRaf: true,
-      });
-      this.asscroll.enable({
-        horizontalScroll: this.isGalleryIndex,
-      });
-    }
-
-    this.materials = [];
-
-    console.log('this', this);
   }
 
   addObjects() {
@@ -384,6 +542,7 @@ export default class Sketch {
 
   render() {
     this.time += 0.05;
+    if (this.time % 2 === 0) console.log('running');
     this.material.uniforms.uTime.value = this.time;
     // this.material.uniforms.uProgress.value = this.settings.progress;
     if (this.isGalleryIndex) {
