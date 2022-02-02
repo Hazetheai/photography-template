@@ -348,14 +348,15 @@ export default class Sketch {
           },
           enter(data) {
             log && console.log('inside-to-default-enter', data);
-            if (!that.asscrollRAF) {
-              that.asscrollRAF = new ASScroll({
-                containerElement: document.querySelector(
-                  '[asscrollRAF-container]'
-                ),
-              });
-            }
-            that.asscrollRAF.enable({
+
+            that.asscroll = new ASScroll({
+              disableRaf: true,
+              containerElement: data.next.container.querySelector(
+                '[asscroll-container]'
+              ),
+            });
+
+            that.asscroll.enable({
               newScrollElements:
                 data.next.container.querySelector('.scroll-wrap'),
             });
