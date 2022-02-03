@@ -1,5 +1,6 @@
 ---
 section: gallery-index
+isHorizontal: true
 barbaNamespace: home
 
 ---
@@ -7,48 +8,43 @@ barbaNamespace: home
 {% extends "./layout.njk" %}
 
 {% block content %}
-  <h1>{{ title }}</h1>
 
-  <main class="b-outside page-content" >
-    <div class="container">
-      <div asscroll-container >
-        <div class="scroll-wrap">
-          <!-- BEGIN content -->
-          <div class="content">
-            {# {{ layoutContent | safe }} #}
+  <main class="" >
+    <div class=" page-content">
+      <h1>{{ title }}</h1>
+      <!-- BEGIN content -->
+      <div class="content">
 
-            <!-- BEGIN item -->
-            <a href="/gallery/this-is-the-first-gallery" class="item">
-              <img src="/texture.jpg" class="js-image" alt=""/>
-              <h2>Some title</h2>
-              <p>And some very interesting description.</p>
-            </a>
-            <!-- END item -->
-            <!-- BEGIN item -->
-            <a href="/gallery/this-is-the-second-gallery" class="item">
-              <img src="/texture.jpg" class="js-image" alt=""/>
-              <h2>Some title</h2>
-              <p>And some very interesting description.</p>
-            </a>
-            <!-- END item -->
-            <!-- BEGIN item -->
-            <a href="/gallery/this-is-the-third-gallery" class="item">
-              <img src="/texture.jpg" class="js-image" alt=""/>
-              <h2>Some title</h2>
-              <p>And some very interesting description.</p>
-            </a>
-            <!-- END item -->
-            <!-- BEGIN item -->
-            <a href="/gallery/this-is-the-fourth-gallery" class="item">
-              <img src="/texture.jpg" class="js-image" alt=""/>
-              <h2>Some title</h2>
-              <p>And some very interesting description.</p>
-            </a>
-            <!-- END item -->
-          </div>
-          <!-- END content -->
-        </div>
+        <!-- BEGIN item -->
+        <a href="/gallery/this-is-the-first-gallery" class="item">
+          <img src="/texture.jpg" class="js-image" alt=""/>
+          <h2>Some title</h2>
+          <p>And some very interesting description.</p>
+        </a>
+        <!-- END item -->
+        <!-- BEGIN item -->
+        <a href="/gallery/this-is-the-second-gallery" class="item">
+          <img src="/texture.jpg" class="js-image" alt=""/>
+          <h2>Some title</h2>
+          <p>And some very interesting description.</p>
+        </a>
+        <!-- END item -->
+        <!-- BEGIN item -->
+        <a href="/gallery/this-is-the-third-gallery" class="item">
+          <img src="/texture.jpg" class="js-image" alt=""/>
+          <h2>Some title</h2>
+          <p>And some very interesting description.</p>
+        </a>
+        <!-- END item -->
+        <!-- BEGIN item -->
+        <a href="/gallery/this-is-the-fourth-gallery" class="item">
+          <img src="/texture.jpg" class="js-image" alt=""/>
+          <h2>Some title</h2>
+          <p>And some very interesting description.</p>
+        </a>
+        <!-- END item -->
       </div>
+      <!-- END content -->
     </div>
   </main>
 {% endblock %}

@@ -6,14 +6,15 @@ barbaNamespace: default
 {% extends "./layout.njk" %}
 
 {% block content %}
-  <main class="page-content">
-    <div asscroll-container class="padding-y-xl">
-      <div class="scroll-wrap">
-        <div class="container o-richtext">
-          <h1>{{ pageTitle }}</h1>
-          {% include "./partials/contact-form.njk" %}
-        </div>
+  <main class="">
+
+    <div class="page-content">
+      <div class="padding-y-xl"></div>
+      <div class="container">
+        <h1>{{ pageTitle }}</h1>
+        {% include "./partials/contact-form.njk" %}
       </div>
     </div>
+
   </main>
 {% endblock %}

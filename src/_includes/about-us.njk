@@ -1,14 +1,15 @@
 ---
-section: contact
+section: about
 barbaNamespace: default
 ---
 
 {% extends "./layout.njk" %}
 
 {% block content %}
-  <main class="page-content">
-    <div asscroll-container class="padding-y-xl">
-      <div class="scroll-wrap">
+  <main class="">
+    <div class="page-content">
+      <div class="padding-y-xl"></div>
+      <div class="container">
         <section class="feature-v4 padding-top-lg margin-bottom-xxl">
           <div class="container max-width-adaptive-lg">
             <div class="feature-v4__grid grid gap-md items-center">
@@ -184,70 +185,70 @@ barbaNamespace: default
       </section>
 
       <!-- newsletter -->
-      <section class="position-relative z-index-1 padding-y-xxl" data-theme="dark-1">
-        <div class="container max-width-adaptive-lg position-relative z-index-2">
-          <div class="bg-contrast-lower padding-lg padding-y-xl@md shadow-lg">
-            <div class="grid gap-md gap-lg@lg items-center">
-              <div class="col-6@md">
-                <div class="text-component">
-                  <h2>Watch this space</h2>
-                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit ipsum quo nihil ipsam sapiente</p>
-                </div>
-              </div>
-
-              <div class="col-6@md">
-                <form class="margin-bottom-sm">
-                  <div class="flex flex-column flex-row@md gap-xxxs">
-                    <input aria-label="Email" class="form-control flex-grow" type="email" placeholder="Your Email">
-                    <button class="btn btn--primary">Get Started</button>
-                  </div>
-                </form>
-
-                <ul class="flex flex-wrap gap-md justify-end@md text-sm">
-                  <li class="inline-flex items-center">
-                    <svg aria-hidden="true" class="icon margin-right-xxs" viewBox="0 0 16 16">
-                      <title>check-single</title>
-                      <polyline points="1 9.5 5.5 14 15 1.5" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="1"></polyline>
-                    </svg>
-                    <span>Cancel anytime</span>
-                  </li>
-
-                  <li class="inline-flex items-center">
-                    <svg aria-hidden="true" class="icon margin-right-xxs" viewBox="0 0 16 16">
-                      <title>check-single</title>
-                      <polyline points="1 9.5 5.5 14 15 1.5" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="1"></polyline>
-                    </svg>
-                    <span>7-day trial</span>
-                  </li>
-                </ul>
-              </div>
+      {# 
+    <section class="position-relative z-index-1 padding-y-xxl" data-theme="dark-1">
+    <div class="container max-width-adaptive-lg position-relative z-index-2">
+      <div class="bg-contrast-lower padding-lg padding-y-xl@md shadow-lg">
+        <div class="grid gap-md gap-lg@lg items-center">
+          <div class="col-6@md">
+            <div class="text-component">
+              <h2>Watch this space</h2>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit ipsum quo nihil ipsam sapiente</p>
             </div>
           </div>
+
+          <div class="col-6@md">
+            <form class="margin-bottom-sm">
+              <div class="flex flex-column flex-row@md gap-xxxs">
+                <input aria-label="Email" class="form-control flex-grow" type="email" placeholder="Your Email">
+                <button class="btn btn--primary">Get Started</button>
+              </div>
+            </form>
+
+            <ul class="flex flex-wrap gap-md justify-end@md text-sm">
+              <li class="inline-flex items-center">
+                <svg aria-hidden="true" class="icon margin-right-xxs" viewBox="0 0 16 16">
+                  <title>check-single</title>
+                  <polyline points="1 9.5 5.5 14 15 1.5" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="1"></polyline>
+                </svg>
+                <span>Cancel anytime</span>
+              </li>
+
+              <li class="inline-flex items-center">
+                <svg aria-hidden="true" class="icon margin-right-xxs" viewBox="0 0 16 16">
+                  <title>check-single</title>
+                  <polyline points="1 9.5 5.5 14 15 1.5" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="1"></polyline>
+                </svg>
+                <span>7-day trial</span>
+              </li>
+            </ul>
+          </div>
         </div>
-
-        <figure class="bg-decoration-v2 z-index-1 blend-overlay" aria-hidden="true">
-          <svg class="bg-decoration-v2__svg color-contrast-higher opacity-40%" viewBox="0 0 1920 450" fill="none">
-            <g stroke="currentColor" stroke-width="2">
-              <rect x="1286" y="-2" width="140" height="140"/>
-              <rect x="1426" y="-2" width="140" height="140"/>
-              <rect x="1566" y="-2" width="140" height="140"/>
-              <rect x="1426" y="138" width="140" height="140"/>
-              <rect x="1566" y="138" width="140" height="140"/>
-              <rect x="1426" y="278" width="140" height="140"/>
-              <circle cx="1426" cy="138" r="70"/>
-              <circle cx="1286" cy="278" r="70"/>
-              <path
-            d="M1286 68C1295.19 68 1304.3 66.1894 1312.79 62.6716C1321.28 59.1537 1329 53.9976 1335.5 47.4975C1342 40.9974 1347.15 33.2806 1350.67 24.7878C1354.19 16.295 1356 7.19253 1356 -2H1286L1286 68Z"/>
-              <path
-            d="M1496 -2.00001C1496 7.19253 1497.81 16.295 1501.33 24.7878C1504.85 33.2806 1510 40.9974 1516.5 47.4975C1523 53.9976 1530.72 59.1537 1539.21 62.6716C1547.7 66.1894 1556.81 68 1566 68C1575.19 68 1584.3 66.1894 1592.79 62.6716C1601.28 59.1537 1609 53.9976 1615.5 47.4975C1622 40.9974 1627.15 33.2806 1630.67 24.7878C1634.19 16.295 1636 7.19253 1636 -2H1566L1496 -2.00001Z"/>
-              <circle cx="1566" cy="278" r="70"/>
-            </g>
-          </svg>
-        </figure>
-      </section>
-
+      </div>
     </div>
-  </div>
 
+    <figure class="bg-decoration-v2 z-index-1 blend-overlay" aria-hidden="true">
+      <svg class="bg-decoration-v2__svg color-contrast-higher opacity-40%" viewBox="0 0 1920 450" fill="none">
+        <g stroke="currentColor" stroke-width="2">
+          <rect x="1286" y="-2" width="140" height="140"/>
+          <rect x="1426" y="-2" width="140" height="140"/>
+          <rect x="1566" y="-2" width="140" height="140"/>
+          <rect x="1426" y="138" width="140" height="140"/>
+          <rect x="1566" y="138" width="140" height="140"/>
+          <rect x="1426" y="278" width="140" height="140"/>
+          <circle cx="1426" cy="138" r="70"/>
+          <circle cx="1286" cy="278" r="70"/>
+          <path
+            d="M1286 68C1295.19 68 1304.3 66.1894 1312.79 62.6716C1321.28 59.1537 1329 53.9976 1335.5 47.4975C1342 40.9974 1347.15 33.2806 1350.67 24.7878C1354.19 16.295 1356 7.19253 1356 -2H1286L1286 68Z"/>
+          <path
+            d="M1496 -2.00001C1496 7.19253 1497.81 16.295 1501.33 24.7878C1504.85 33.2806 1510 40.9974 1516.5 47.4975C1523 53.9976 1530.72 59.1537 1539.21 62.6716C1547.7 66.1894 1556.81 68 1566 68C1575.19 68 1584.3 66.1894 1592.79 62.6716C1601.28 59.1537 1609 53.9976 1615.5 47.4975C1622 40.9974 1627.15 33.2806 1630.67 24.7878C1634.19 16.295 1636 7.19253 1636 -2H1566L1496 -2.00001Z"/>
+          <circle cx="1566" cy="278" r="70"/>
+        </g>
+      </svg>
+    </figure>
+  </section> #}
+    </div>
+
+  </div>
 </main>
 {% endblock %}

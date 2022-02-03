@@ -57,7 +57,9 @@ export default class Sketch {
     this.isGalleryIndex = !!document.querySelector(
       '[data-current="gallery-index"]'
     );
-    this.isGalleryPage = !!document.querySelector('[data-current="gallery"]');
+    this.isGalleryPage = !!document.querySelector(
+      '[data-current="gallery-item"]'
+    );
 
     // this.setupSettings();
     this.init();
@@ -93,16 +95,14 @@ export default class Sketch {
 
     // this.controls = new OrbitControls(this.camera, this.renderer.domElement)
 
-    if (this.isGalleryIndex && this.asscroll === undefined) {
-      this.asscroll = new ASScroll({
-        containerElement: document.querySelector('[asscroll-container]'),
-        disableRaf: true,
-      });
+    this.asscroll = new ASScroll({
+      containerElement: document.querySelector('[asscroll-container]'),
+      disableRaf: true,
+    });
 
-      this.asscroll.enable({
-        horizontalScroll: this.isGalleryIndex,
-      });
-    }
+    this.asscroll.enable({
+      horizontalScroll: this.isGalleryIndex,
+    });
 
     this.materials = [];
     console.log('this.asscroll', this.asscroll);
@@ -546,9 +546,9 @@ export default class Sketch {
     if (this.time % 2 === 0) console.log('running');
     this.material.uniforms.uTime.value = this.time;
     // this.material.uniforms.uProgress.value = this.settings.progress;
-    if (this.isGalleryIndex) {
-      this.asscroll.update();
-    }
+
+    this.asscroll.update();
+
     this.setPositions();
     // this.tl.progress(this.settings.progress);
 

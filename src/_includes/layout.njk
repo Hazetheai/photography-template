@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" {% if section %} data-current="{{ section }}"{% endif %}>
+<html lang="en" >
   {% include "./partials/siteHead.njk" %}
 
   <body >
@@ -7,8 +7,7 @@
       {% include './partials/sprite.svg' %}
     </div> #}
     <div data-barba="wrapper">
-      <div data-barba="container"  {% if barbaNamespace %} data-barba-namespace="{{ barbaNamespace }}" {% endif %} >
-
+      <div data-barba="container"  {% if barbaNamespace %} data-barba-namespace="{{ barbaNamespace }}" {% endif %} {% if section %} data-current="{{ section }}"{% endif %} >
         {% if page.url == '/' %}
           {% set showHomeLink = false %}
         {% else %}
@@ -16,13 +15,21 @@
         {% endif %}
 
         {% include "./partials/header.njk" %}
-        {% if section != 'gallery-item' %}
-          <div class="padding-y-xl"></div>
-        {% endif %}
-        {% block content %}{% endblock %}
+        <div asscroll-container  >
+          <div class="scroll-wrap">
 
-        {% include "./partials/footer.njk" %}
+            {% block content %}{% endblock %}
+            {% if isHorizontal != true %}
+              {% include "./partials/footer.njk" %}
+            {% endif %}
 
+          </div>
+
+          {% if isHorizontal == true %}
+            {% include "./partials/footer.njk" %}
+          {% endif %}
+        </div>
+        <!-- scroll divs -->
       </div>
     </div>
     <!-- end barba -->
@@ -37,6 +44,9 @@
     {% endif %}
     <script type="module" src="/index{{ JsVersion }}.js"></script>
     <script  src="/js/scripts/scripts.min.js"></script>
-
+    {# <script  src="/js/components/_1_reveal-effects.js"></script>
+    <script  src="/js/components/_1_masonry.js"></script>
+    <script  src="/js/components/_1_swipe-content.js"></script>
+    <script  src="/js/components/_2_image-zoom.js"></script> #}
   </body>
 </html>

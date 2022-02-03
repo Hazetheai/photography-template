@@ -8,55 +8,54 @@ barbaNamespace: inside
 
 {% block content %}
 
-  <main class="page-content" >
+  <main class="" >
 
-    <h1>{{ title }}</h1>
-    <div asscroll-container  >
-      <div class="scroll-wrap">
-        <!-- BEGIN content -->
-        <div class="inside">
-          <!-- BEGIN item -->
-          <div class="single ">
-            <div
+    <!-- BEGIN content -->
+    <div class="page-content inside">
+      <h1>{{ title }}</h1>
+
+      <!-- BEGIN item -->
+      <div class="single ">
+        <div
                   class="single__top z-index-popover position-relative"
                   style="background-image: url(/texture.jpg)"
                 ></div>
-            <div class="single__content container">
-              <h1>Some title</h1>
-              <figure>
-                <img src="/4.jpg" width="300" alt=""/>
-                <figcaption>
-                  <p>
+        <div class="single__content container">
+          <h1>Some title</h1>
+          <figure>
+            <img src="/4.jpg" width="300" alt=""/>
+            <figcaption>
+              <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Iste ipsum doloribus commodi atque pariatur! Quia
                         expedita debitis aperiam molestiae eum recusandae,
                         corrupti architecto aut quod sapiente voluptas
                         consequatur, explicabo mollitia.
                       </p>
-                </figcaption>
-              </figure>
+            </figcaption>
+          </figure>
 
-              <figure>
-                <img src="/4.jpg" width="300" alt=""/>
-                <figcaption>
-                  <p>
+          <figure>
+            <img src="/4.jpg" width="300" alt=""/>
+            <figcaption>
+              <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Iste ipsum doloribus commodi atque pariatur! Quia
                         expedita debitis aperiam molestiae eum recusandae,
                         corrupti architecto aut quod sapiente voluptas
                         consequatur, explicabo mollitia.
                       </p>
-                </figcaption>
-              </figure>
+            </figcaption>
+          </figure>
 
-              <p>
+          <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Iste ipsum doloribus commodi atque pariatur! Quia expedita
                     debitis aperiam molestiae eum recusandae, corrupti
                     architecto aut quod sapiente voluptas consequatur, explicabo
                     mollitia.
                   </p>
-              <p>
+          <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Iste ipsum doloribus commodi atque pariatur! Quia expedita
                     debitis aperiam molestiae eum recusandae, corrupti
@@ -64,24 +63,20 @@ barbaNamespace: inside
                     mollitia.
                   </p>
 
-              <!-- BEGIN footer -->
-              <footer class="footer">
-                <nav>
-                  <a href="{{ '/' | url }}">← Home</a>
-                </nav>
+          <!-- BEGIN footer -->
+          <footer class="footer">
+            <nav>
+              <a href="{{ '/' | url }}">← Home</a>
+            </nav>
 
-              </footer>
-              <!-- END footer -->
-            </div>
-          </div>
-          <!-- END item -->
+          </footer>
+          <!-- END footer -->
         </div>
-        <!-- END inside -->
       </div>
+      <!-- END item -->
     </div>
-    <!-- scroll divs -->
-  </div>
-</div>
-</main>
+    <!-- END inside -->
+
+  </main>
 
 {% endblock %}
