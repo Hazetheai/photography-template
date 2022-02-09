@@ -18,6 +18,7 @@ import * as dat from 'dat.gui';
 import gsap from 'gsap';
 import ASScroll from '@ashthornton/asscroll';
 import barba from '@barba/core';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 
 function rToDeg(radians) {
   return (radians * 180) / Math.PI;
@@ -54,13 +55,6 @@ export default class Sketch {
     this.imageStore;
     this.materials;
 
-    this.isGalleryIndex = !!document.querySelector(
-      '[data-current="gallery-index"]'
-    );
-    this.isGalleryPage = !!document.querySelector(
-      '[data-current="gallery-item"]'
-    );
-
     // this.setupSettings();
     this.init();
     this.setupResize();
@@ -69,6 +63,13 @@ export default class Sketch {
     this.addClickEvents();
     this.resize();
     this.render();
+  }
+
+  isGalleryIndex() {
+    return !!document.querySelector('[data-current="gallery-index"]');
+  }
+  isGalleryPage() {
+    return !!document.querySelector('[data-current="gallery-item"]');
   }
 
   setupSettings() {
@@ -114,6 +115,20 @@ export default class Sketch {
     const log = true;
     barba.init({
       transitions: [
+        // name: 'default-transition'
+        {
+          name: 'default-transition',
+          leave() {},
+          enter() {
+            console.log(`default-transition`);
+            // that.isGalleryIndex = !!document.querySelector(
+            //   '[data-current="gallery-index"]'
+            // );
+            // that.isGalleryPage = !!document.querySelector(
+            //   '[data-current="gallery-item"]'
+            // );
+          },
+        },
         // name: 'default-to-default',
         {
           name: 'default-to-default',
@@ -270,6 +285,11 @@ export default class Sketch {
               newScrollElements:
                 data.next.container.querySelector('.scroll-wrap'),
             });
+
+            if (that.isGalleryPage()) {
+              that.parallax();
+            }
+
             return gsap.timeline().from(data.current.container, {
               opacity: 0,
               onComplete: () => {
@@ -360,6 +380,7 @@ export default class Sketch {
               newScrollElements:
                 data.next.container.querySelector('.scroll-wrap'),
             });
+
             // cleaning old arrays
             that.imageStore.forEach((m) => {
               that.scene.remove(m.mesh);
@@ -527,6 +548,11 @@ export default class Sketch {
       i.mesh.material.uniforms.uTextureSize.value.x = bounds.width;
       i.mesh.material.uniforms.uTextureSize.value.y = bounds.height;
     });
+  }
+
+  parallax() {
+    console.log(`parallax`);
+    // https://codepen.io/ashthornton/pen/VwpWoeN/874833fdebc032bedd0cf61e9eac3ee9?editors=0010
   }
 
   setupResize() {
