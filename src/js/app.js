@@ -8,9 +8,7 @@ import {
   Vector2,
   Vector4,
   Mesh,
-  Texture,
 } from 'three';
-// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import fragment from '/src/shaders/fragment.glsl';
 import vertex from '/src/shaders/vertex.glsl';
 import debugTexture from '../images/texture.jpg';
@@ -18,7 +16,7 @@ import * as dat from 'dat.gui';
 import gsap from 'gsap';
 import ASScroll from '@ashthornton/asscroll';
 import barba from '@barba/core';
-import ScrollTrigger from 'gsap/ScrollTrigger';
+// import ScrollTrigger from 'gsap/ScrollTrigger';
 
 function rToDeg(radians) {
   return (radians * 180) / Math.PI;
@@ -123,8 +121,6 @@ export default class Sketch {
     this.renderer.setSize(this.width, this.height);
     this.renderer.setPixelRatio(window.devicePixelRatio);
     this.container.appendChild(this.renderer.domElement);
-
-    // this.controls = new OrbitControls(this.camera, this.renderer.domElement)
 
     this.asscroll = new ASScroll({
       containerElement: document.querySelector('[asscroll-container]'),
