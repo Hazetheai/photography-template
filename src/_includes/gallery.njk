@@ -12,67 +12,23 @@ barbaNamespace: inside
 
     <!-- BEGIN content -->
     <div class="page-content inside">
-      <h1>{{ title }}</h1>
 
       <!-- BEGIN item -->
-      <div class="single ">
-        <div
-                  class="single__top z-index-popover position-relative"
+
+      <div
+                  class="gallery__banner z-index-popover position-relative flex flex-column justify-end"
                   style="background-image: url(/texture.jpg)"
-                ></div>
-        <div class="single__content container">
-          <h1>Some title</h1>
-          <figure>
-            <img src="/4.jpg" width="300" alt=""/>
-            <figcaption>
-              <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Iste ipsum doloribus commodi atque pariatur! Quia
-                        expedita debitis aperiam molestiae eum recusandae,
-                        corrupti architecto aut quod sapiente voluptas
-                        consequatur, explicabo mollitia.
-                      </p>
-            </figcaption>
-          </figure>
+                >
 
-          <figure>
-            <img src="/4.jpg" width="300" alt=""/>
-            <figcaption>
-              <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Iste ipsum doloribus commodi atque pariatur! Quia
-                        expedita debitis aperiam molestiae eum recusandae,
-                        corrupti architecto aut quod sapiente voluptas
-                        consequatur, explicabo mollitia.
-                      </p>
-            </figcaption>
-          </figure>
+        <div class="gallery__title padding-xl ">
+          <h1 >{{ pageTitle }}</h1>
 
-          <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Iste ipsum doloribus commodi atque pariatur! Quia expedita
-                    debitis aperiam molestiae eum recusandae, corrupti
-                    architecto aut quod sapiente voluptas consequatur, explicabo
-                    mollitia.
-                  </p>
-          <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Iste ipsum doloribus commodi atque pariatur! Quia expedita
-                    debitis aperiam molestiae eum recusandae, corrupti
-                    architecto aut quod sapiente voluptas consequatur, explicabo
-                    mollitia.
-                  </p>
-
-          <!-- BEGIN footer -->
-          <footer class="footer">
-            <nav>
-              <a href="{{ '/' | url }}">← Home</a>
-            </nav>
-
-          </footer>
-          <!-- END footer -->
         </div>
       </div>
+      <div class="container padding-y-xxl" >
+        {% include "./partials/image-gallery.njk" %}
+      </div>
+
       <!-- END item -->
     </div>
     <!-- END inside -->

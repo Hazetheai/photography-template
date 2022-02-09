@@ -44,40 +44,34 @@ canvas {
 }
 /* single */
 
-.single h1 {
-  margin-bottom: 1em;
-  font-size: 3em;
-}
-figure {
-  margin: 0 0 3em 0;
-  display: flex;
-  gap: 50px;
-}
-figure + figure {
-  flex-direction: row-reverse;
-}
-figure img {
-  float: left;
-  margin-right: 30px;
-}
-.single__content {
-  max-width: 1000px;
-  margin: 50px auto;
-}
-.single__content p {
-  margin: 2em 0;
-  line-height: 1.7;
-  font-size: 1.1em;
-}
-.single__content a {
-  color: #fff;
-}
-.single__top {
-  height: 100vh;
-  width: 100%;
-  background-size: cover;
-  background-position: 50% 50%;
-}
+// .single h1 {
+//   margin-bottom: 1em;
+//   font-size: 3em;
+// }
+// figure {
+//   margin: 0 0 3em 0;
+//   display: flex;
+//   gap: 50px;
+// }
+// figure + figure {
+//   flex-direction: row-reverse;
+// }
+// figure img {
+//   float: left;
+//   margin-right: 30px;
+// }
+// .single__content {
+//   max-width: 1000px;
+//   margin: 50px auto;
+// }
+// .single__content p {
+//   margin: 2em 0;
+//   line-height: 1.7;
+//   font-size: 1.1em;
+// }
+// .single__content a {
+//   color: #fff;
+// }
 
 .curtain {
   position: fixed;

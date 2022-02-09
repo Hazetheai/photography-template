@@ -72,6 +72,36 @@ export default class Sketch {
     return !!document.querySelector('[data-current="gallery-item"]');
   }
 
+  iObserver() {
+    if ('IntersectionObserver' in window) {
+      console.log('Your browser supports IntersectionObserver');
+
+      const options = {
+        threshold: 0.7,
+      };
+
+      const targets = document.querySelectorAll('.gallery-item');
+
+      const lazyLoad = (target) => {
+        const io = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              console.log(img);
+              img.classList.add('fade');
+              observer.disconnect();
+            }
+          });
+        }, options);
+
+        io.observe(target);
+      };
+      targets.forEach(lazyLoad);
+    } else {
+      console.log('Your browser does not support IntersectionObserver');
+    }
+  }
+
   setupSettings() {
     this.settings = {
       progress: 0,
@@ -102,7 +132,7 @@ export default class Sketch {
     });
 
     this.asscroll.enable({
-      horizontalScroll: this.isGalleryIndex,
+      horizontalScroll: this.isGalleryIndex(),
     });
 
     this.materials = [];
@@ -116,17 +146,53 @@ export default class Sketch {
     barba.init({
       transitions: [
         // name: 'default-transition'
+        // {
+        //   name: 'self',
+        //   enter(data) {
+        //     console.log('self');
+        //     // create your self transition here
+
+        //     that.asscroll = new ASScroll({
+        //       disableRaf: true,
+        //       containerElement: data.next.container.querySelector(
+        //         '[asscroll-container]'
+        //       ),
+        //     });
+
+        //     that.asscroll.enable({
+        //       horizontalScroll: that.isGalleryIndex(),
+        //       newScrollElements:
+        //         data.next.container.querySelector('.scroll-wrap'),
+        //     });
+
+        //     return gsap
+        //       .timeline()
+        //       .to('.curtain', { duration: 0.3, y: '100%' })
+        //       .to('.curtain', { duration: 0.3, y: '-100%' })
+        //       .from(data.next.container, {
+        //         opacity: 0,
+        //       });
+        //   },
+        // },
+        // name: 'default-transition'
         {
           name: 'default-transition',
-          leave() {},
-          enter() {
-            console.log(`default-transition`);
-            // that.isGalleryIndex = !!document.querySelector(
-            //   '[data-current="gallery-index"]'
-            // );
-            // that.isGalleryPage = !!document.querySelector(
-            //   '[data-current="gallery-item"]'
-            // );
+          leave(data) {
+            log && console.log('default-leave', data);
+            return gsap
+              .timeline()
+              .to('.curtain', { duration: 0.3, y: 0 })
+              .to(data.current.container, { opacity: 0 });
+          },
+          enter(data) {
+            log && console.log('default-enter', data);
+
+            return gsap
+              .timeline()
+              .to('.curtain', { duration: 0.3, y: '-100%' })
+              .from(data.next.container, {
+                opacity: 0,
+              });
           },
         },
         // name: 'default-to-default',
@@ -289,7 +355,7 @@ export default class Sketch {
             if (that.isGalleryPage()) {
               that.parallax();
             }
-
+            that.iObserver();
             return gsap.timeline().from(data.current.container, {
               opacity: 0,
               onComplete: () => {
@@ -390,6 +456,43 @@ export default class Sketch {
             // Disable THREE
             that.container.style.visibility = 'hidden';
             that.animationRunning = false;
+            return gsap
+              .timeline()
+              .to('.curtain', { duration: 0.3, y: '-100%' })
+              .from(data.next.container, {
+                opacity: 0,
+              });
+          },
+        },
+        // name: 'inside-to-inside',
+        {
+          name: 'inside-to-inside',
+          from: {
+            namespace: 'inside',
+          },
+          to: {
+            namespace: 'inside',
+          },
+          leave(data) {
+            return gsap
+              .timeline()
+              .to('.curtain', { duration: 0.3, y: 0 })
+              .to(data.current.container, { opacity: 0 });
+          },
+          enter(data) {
+            log && console.log('inside-to-inside-enter', data);
+            that.iObserver();
+            that.asscroll = new ASScroll({
+              disableRaf: true,
+              containerElement: data.next.container.querySelector(
+                '[asscroll-container]'
+              ),
+            });
+
+            that.asscroll.enable({
+              newScrollElements:
+                data.next.container.querySelector('.scroll-wrap'),
+            });
             return gsap
               .timeline()
               .to('.curtain', { duration: 0.3, y: '-100%' })

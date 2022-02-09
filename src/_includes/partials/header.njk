@@ -8,7 +8,7 @@
   {% set headerBg = '' %}
 {% endif %}
 
-<header class="header {{ headerClass }} padding-lg bg z-index-header position-fixed " data-header="data-header">
+<header class="header {{ headerClass }} {{ headerBg }} padding-lg z-index-header position-fixed " data-header="data-header">
   {# {% if showHomeLink == true %}
     <h3 class="header__title">
       <a href="/">{{ metadata.title }}</a>

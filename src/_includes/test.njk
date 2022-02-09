@@ -1,0 +1,19 @@
+---
+section: test
+barbaNamespace: default
+
+---
+
+{% extends "./layout.njk" %}
+
+{% block content %}
+    <main class="" >
+        <div class="page-content">
+            <div class="padding-y-xl"></div>
+            <div class="container">
+                <h1>{{ pageTitle }}</h1>
+                {% include "partials/image-gallery.njk" %}
+
+            </div>
+        </main>
+    {% endblock %}
