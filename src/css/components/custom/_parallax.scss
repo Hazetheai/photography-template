@@ -1,0 +1,32 @@
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 2rem;
+}
+
+//  canvas {
+//     position: fixed;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     z-index: -1;
+//     pointer-events: none;
+//  }
+
+.pointer-blocker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+hr {
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-bottom: 1px solid black;
+}

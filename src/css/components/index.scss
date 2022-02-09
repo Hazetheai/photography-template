@@ -1,12 +1,14 @@
 // Codyhouse Components
-@import './1_list';
-@import './1_main-footer-v3';
-@import './1_radios-checkboxes';
-@import './2_form-template';
+@import './_1_list';
+@import './_1_main-footer-v3';
+@import './_1_radios-checkboxes';
+@import './_2_form-template';
 @import './_1_feature-v4';
 @import './_1_card-v8';
 @import './2_feature-v8';
 @import './_1_socials-v3';
 
 // My Components
-@import './custom/main-nav.scss';
+@import './custom/_main-nav';
+@import './custom/_main-footer';
+@import './custom/_parallax';

@@ -19,7 +19,6 @@ canvas {
 
 /* item */
 .item {
-  font-family: 'Coustard', serif;
   text-decoration: none;
   color: #eee;
   width: 30vw;
@@ -44,8 +43,7 @@ canvas {
   opacity: 0.1;
 }
 /* single */
-.single {
-}
+
 .single h1 {
   margin-bottom: 1em;
   font-size: 3em;
@@ -90,8 +88,4 @@ figure img {
   z-index: 100;
   background: #949494;
   transform: translate(0, 100%);
-}
-
-canvas {
-  /* display: none !important; */
 }
