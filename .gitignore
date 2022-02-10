@@ -62,6 +62,8 @@ typings/
 !.yarn/sdks
 !.yarn/versions
 
+.yarnrc.yml
+
 # dotenv environment variables file
 .env
 .yarn
