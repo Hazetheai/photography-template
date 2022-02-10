@@ -54,12 +54,23 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
 # dotenv environment variables file
 .env
-
+.yarn
 .cache
 .parcel-cache
 public
 yarn-error.log
 dist
 
+
+# Local Netlify folder
+.netlify
