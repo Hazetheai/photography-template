@@ -5,19 +5,6 @@
 [dev]
   framework = "eleventy"
 
-[[headers]]
-  for = "/*"
-
-  [headers.values]
-#   X-Frame-Options = "SAMEORIGIN"
-    X-XSS-Protection = "1; mode=block"
-    cache-control = '''
-    max-age=0,
-    no-cache,
-    no-store,
-    must-revalidate'''
-
-
     # REDIRECT and HEADERS examples
 
 # Redirect rule example
