@@ -2,6 +2,13 @@ backend:
   name: git-gateway
   branch: main # Branch to update (optional; defaults to master)
 
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: dwa5hefth
+    api_key: 467964347927819
+    multiple: true
+
 # Uncomment below to enable drafts
 publish_mode: editorial_workflow
 
@@ -27,11 +34,17 @@ collections:
       - { label: 'Summary', name: 'summary', widget: 'text' }
       - { label: 'Tags', name: 'tags', widget: 'list', default: ['post'] }
       - { label: 'Body', name: 'body', widget: 'markdown' }
+      - label: 'Gallery'
+        name: 'galleryImages'
+        widget: 'list'
+        fields:
+          - { label: 'Source', name: 'src', widget: 'image' }
+          - { label: 'Alt Text', name: 'alt', widget: 'string' }
   # Our pages e.g. About
   - name: 'pages'
     label: 'Page'
     folder: 'src/pages'
-    create: true # Change to true to allow editors to create new pages
+    create: true
     slug: '{{slug}}'
     fields:
       - { label: 'Title', name: 'title', widget: 'string' }

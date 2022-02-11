@@ -3,6 +3,7 @@ uniform float uProgress;
 uniform sampler2D uTexture;
 uniform vec2 uTextureSize;
 uniform vec2 uQuadSize;
+uniform vec2 uHovered;
 
 // varying float vPulse;
 varying vec2 vUv;
@@ -36,7 +37,10 @@ void main() {
     // vec2 newUV = (vUv - vec2(0.5)) * vec2(2., 1.)  + vec2(0.5);
     
     vec2 correctUV = getUV(vUv, uTextureSize, vSize);
-    vec4 image = texture(uTexture, correctUV);
+
+    vec4 image = vec4(uHovered.x) * texture(uTexture, correctUV);
+
+
     // gl_FragColor = vec4( vUv, 0.0, 1.);
     gl_FragColor =  image;
 }

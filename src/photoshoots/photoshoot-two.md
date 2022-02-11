@@ -5,10 +5,7 @@ date: 2019-01-01T00:00:00.000Z
 author: John Appleseed
 summary: The Fourth Gallery
 tags:
-  - tech
-  - environment
-  - politics
-  - sport
+  - photoshoot
 ---
 
 Gallery one
