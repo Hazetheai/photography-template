@@ -1,3 +1,3 @@
 ---
-pageTitle: 'Parallax page'
+title: 'Parallax page'
 ---

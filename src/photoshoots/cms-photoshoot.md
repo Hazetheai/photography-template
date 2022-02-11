@@ -15,4 +15,5 @@ galleryImages:
       - https://res.cloudinary.com/dwa5hefth/image/upload/v1644601960/photography-template/images/2.jpg
     alt: some alt text
 ---
+
 some lovely text

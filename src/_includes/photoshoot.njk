@@ -23,7 +23,7 @@ barbaNamespace: inside
                 >
 
         <div class="gallery__title padding-xl ">
-          <h1 >{{ pageTitle }}</h1>
+          <h1 >{{ title }}</h1>
 
         </div>
       </div>
@@ -33,9 +33,9 @@ barbaNamespace: inside
       </div>
       <div class="gallery-container w-2 h-2">
 
-        {% if previousPhotoshoot %}Previous Photoshoot: <a class="link-subtle" href="{{ previousPhotoshoot.url }}">{{ previousPhotoshoot.data.pageTitle }}</a>
+        {% if previousPhotoshoot %}Previous Photoshoot: <a class="link-subtle" href="{{ previousPhotoshoot.url }}">{{ previousPhotoshoot.data.title }}</a>
         {% endif %}
-        {% if nextPhotoshoot %}Next Blog Photoshoot: <a class="link-subtle" href="{{ nextPhotoshoot.url }}">{{ nextPhotoshoot.data.pageTitle }}</a>
+        {% if nextPhotoshoot %}Next Blog Photoshoot: <a class="link-subtle" href="{{ nextPhotoshoot.url }}">{{ nextPhotoshoot.data.title }}</a>
         {% endif %}
 
       </div>

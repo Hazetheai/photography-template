@@ -1,6 +1,6 @@
 ---
 layout: contact.njk
-pageTitle: 'Contact'
+title: 'Contact'
 ---
 
 Contact

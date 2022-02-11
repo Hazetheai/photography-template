@@ -1,5 +1,5 @@
 {
   "layout": "photoshoot.njk",
-  "permalink": "gallery/{{ pageTitle | slug }}/index.html",
+  "permalink": "gallery/{{ title | slug }}/index.html",
   "tags": "photoshoot"
 }

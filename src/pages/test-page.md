@@ -1,5 +1,5 @@
 ---
-pageTitle: 'Test page'
+title: 'Test page'
 ---
 
 This is a paragraph of text.

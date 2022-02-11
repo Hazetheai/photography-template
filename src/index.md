@@ -1,6 +1,6 @@
 ---
 layout: home.njk
-pageTitle: 'Photography'
+title: 'Photography'
 ---
 
 Welcome - The content goes here

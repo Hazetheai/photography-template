@@ -1,4 +1,4 @@
 ---
-pageTitle: 'About'
+title: 'About'
 layout: 'about-us.njk'
 ---
