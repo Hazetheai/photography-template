@@ -3,6 +3,8 @@
 section: gallery-item
 barbaNamespace: inside
 ---
+{% set previousPhotoshoot = collections.photoshoot | getPreviousCollectionItem(page) %}
+{% set nextPhotoshoot = collections.photoshoot | getNextCollectionItem(page) %}
 
 {% extends "./layout.njk" %}
 
@@ -25,8 +27,17 @@ barbaNamespace: inside
 
         </div>
       </div>
+
       <div class="container padding-y-xxl" >
         {% include "./partials/image-gallery.njk" %}
+      </div>
+      <div class="gallery-container w-2 h-2">
+
+        {% if previousPhotoshoot %}Previous Photoshoot: <a class="link-subtle" href="{{ previousPhotoshoot.url }}">{{ previousPhotoshoot.data.pageTitle }}</a>
+        {% endif %}
+        {% if nextPhotoshoot %}Next Blog Photoshoot: <a class="link-subtle" href="{{ nextPhotoshoot.url }}">{{ nextPhotoshoot.data.pageTitle }}</a>
+        {% endif %}
+
       </div>
 
       <!-- END item -->
